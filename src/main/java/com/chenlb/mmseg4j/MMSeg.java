@@ -42,6 +42,7 @@ public class MMSeg {
 		int d = reader.read();
 		if (Character.getType(d) == Character.SURROGATE) {
 			int l = reader.read();
+			readedIdx++;
 			d = Character.toCodePoint((char)d, (char)l);
 		}
 		if(d > -1) {
