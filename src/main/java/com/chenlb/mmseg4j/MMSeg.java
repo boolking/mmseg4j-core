@@ -40,6 +40,10 @@ public class MMSeg {
 	
 	private int readNext() throws IOException {
 		int d = reader.read();
+		if (Character.getType(d) == Character.SURROGATE) {
+			int l = reader.read();
+			d = Character.toCodePoint((char)d, (char)l);
+		}
 		if(d > -1) {
 			readedIdx++;
 			d = Character.toLowerCase(d);
